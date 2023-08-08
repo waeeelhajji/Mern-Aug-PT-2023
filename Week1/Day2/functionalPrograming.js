@@ -62,3 +62,47 @@ var arr2 = [8, 9, 10, 11]
 const newArray = arr1.concat(arr2)
 
 console.log(newArray)
+
+//!-------------------------------Map and Filter
+
+//?-------.map()
+
+
+for (eachAnimals of animals) {
+    var newarray = []
+    eachAnimals = eachAnimals + "animal"
+    newarray.push(eachAnimals)
+
+    console.log(newarray)
+}
+
+animals.map(function (oneElement, idx) {
+    return oneElement = oneElement + "animal with the map" + idx
+})
+
+const newArrayOfAnimals = animals.map(function (oneElement, idx) {
+    return oneElement = oneElement + "animal with the map" + idx
+})
+
+console.log(newArrayOfAnimals)
+
+
+//?-------.filter()
+const animals = ["leopard", "giraffe", "zebra", "elephant", "monkey", "lion"]
+
+const filteredAnimals = animals.filter((oneAnimal) => {
+    if (oneAnimal.length <= 5) {
+        return true
+    } else {
+        return false
+    }
+})
+const filteredAnimals2 = animals.filter((oneAnimal) => {
+    return oneAnimal.length <= 5
+})
+
+console.log(filteredAnimals2)
+
+
+
+
