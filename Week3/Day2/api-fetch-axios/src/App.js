@@ -9,7 +9,7 @@ function App() {
   // anything dynamic needs STATE
   const [heroes, setHeroes] = useState([])
   //!-------------------------UseEffect
-  console.log("1.before useEffect")
+
   useEffect(() => {
     Axios.get("https://akabab.github.io/superhero-api/api/all.json")
       .then(res => {
@@ -21,7 +21,7 @@ function App() {
       })
 
   }, [])
-  console.log("3.after useEffect")
+
 
 
   //!-------------------------Axios
@@ -41,6 +41,7 @@ function App() {
   const fetchHeroes = () => {
     fetch("https://akabab.github.io/superhero-api/api/all.json")
       .then(response => {
+        //  you need transform you response to JSON before you set it in you state
         return response.json()
       }).then(response => {
         console.log(response)
@@ -61,25 +62,25 @@ function App() {
       <h4>fetch /Axios / useEffect</h4>
       <hr />
       {/* {JSON.stringify(heroes)} */}
-      <button className="btn btn-success" onClick={fetchHeroes}> fetch SupperHeroes</button>
-      <button className="btn btn-primary" onClick={AxiosHeroes}> Axios SupperHeroes</button>
+      <button onClick={fetchHeroes}> fetch SupperHeroes</button>
+      <button onClick={AxiosHeroes}> Axios SupperHeroes</button>
       <hr />
       <table >
         <thead>
           <tr>
-            <th scope="col">
+            <th>
               #
             </th>
-            <th scope="col">
+            <th>
               Image
             </th>
-            <th scope="col">
+            <th>
               Hero Name
             </th >
-            <th scope="col">
+            <th >
               Full Name
             </th>
-            <th scope="col">
+            <th>
               Publisher
             </th>
           </tr>
@@ -89,7 +90,7 @@ function App() {
             heroes.map(hero => {
               return (
                 <tr key={hero.id}>
-                  <th scope="row">{hero.id}</th>
+                  <th>{hero.id}</th>
                   <td>
                     <img src={hero.images.sm}
                       width="120px"
