@@ -1,9 +1,13 @@
 import Axios from "axios"
 import './App.css';
 import { useEffect, useState } from 'react';
+import useParams from "react-router-dom"
 // import GitHubApi from "./components/GitHubApi";
 
 function App() {
+
+  const { idHero } = useParams()
+
 
 
   // anything dynamic needs STATE
