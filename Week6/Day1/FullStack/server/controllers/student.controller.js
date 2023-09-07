@@ -21,9 +21,9 @@ module.exports.createNewStudent = (req, res) => {
     StudentSchema.create(req.body)
         .then(CreateStudent => {
             console.log(CreateStudent)
-            res.json({ CreateStudent })
+            res.status(200).json({ CreateStudent })
         })
-        .catch(err => { res.json({ message: "wait a minute 😏😏 ", error: err }) })
+        .catch(err => { res.status(400).json(err) })
 
 
 }
