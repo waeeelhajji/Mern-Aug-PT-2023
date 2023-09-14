@@ -53,6 +53,8 @@ const DisplayAllNotes = () => {
                         </p>
                         <Link to={`/${oneNote._id}/edit`}>Edit</Link>
                         <button onClick={() => { DeleteNote(oneNote._id) }}>Delete</button>
+
+
                     </div>
                 })
             }

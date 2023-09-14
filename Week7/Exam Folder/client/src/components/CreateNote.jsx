@@ -1,43 +1,30 @@
 import axios from 'axios'
-import React, { useEffect, useState } from 'react'
-import { useNavigate, useParams } from 'react-router-dom'
+import React, { useState } from 'react'
 
-const UpdateNote = () => {
+const CreateNote = () => {
 
-    const [Title, setTitle] = useState("")
-    const [Content, setContent] = useState("")
-    const [isComplete, setIsComplete] = useState()
     const [errors, setErrors] = useState([]);
     const [ObjErrors, setObjErrors] = useState({});
 
-    const { noteId } = useParams()
-    const navigate = useNavigate()
 
-
-    useEffect(() => {
-        axios.get(`http://localhost:5000/api/notes/${noteId}`)
-            .then(res => {
-                console.log(res.data)
-                const { Title, Content, isComplete } = res.data
-                setTitle(Title)
-                setContent(Content)
-                setIsComplete(isComplete)
-
-            })
-            .catch((err => console.log(err)))
-    }, [])
-
-    const UpdateHandler = (e) => {
+    //!-1 useState
+    const [Title, setTitle] = useState("")
+    const [Content, setContent] = useState("")
+    const [isComplete, setIsComplete] = useState(true)
+    //!-2 SuBmitHandler
+    const SubmitHandler = (e) => {
         e.preventDefault()
         const newNote = {
             Title,
             Content,
             isComplete
         }
-        axios.put(`http://localhost:5000/api/notes/${noteId}`, newNote)
+        axios.post("http://localhost:5000/api/notes", newNote)
             .then(res => {
-                console.log("Successfully Updates ✅✅✅")
-                navigate("/")
+                console.log("Successfully submitted ✅✅✅")
+                setTitle("")
+                setContent(0)
+                setIsComplete("")
             })
             .catch(err => {
                 console.log(err.response.data.errors)
@@ -58,27 +45,24 @@ const UpdateNote = () => {
 
             })
     }
-
-
     return (
         <div>
-            <h1>UpdateNote</h1>
+            CreateNote
             {errors.map((err, index) => <p style={{ color: "red" }} key={index}>{err}</p>)}
-            <form onSubmit={UpdateHandler} >
+            <form onSubmit={SubmitHandler}>
                 Title :
-                <input onChange={(e) => { setTitle(e.target.value) }} value={Title} required /> <br /><br /><br />
+                <input onChange={(e) => { setTitle(e.target.value) }} value={(Title)} /> <br /><br /><br />
                 {ObjErrors.Title ? <p>{ObjErrors.Title}</p> : null}
                 Content :
-                <textarea onChange={(e) => { setContent(e.target.value) }} value={Content} /><br /><br /><br />
+                <textarea onChange={(e) => { setContent(e.target.value) }} value={(Content)} /><br /><br /><br />
                 Important  :
                 <input type="checkbox" checked={isComplete} onChange={(e) => { setIsComplete(e.target.checked) }} />
                 <input type="Submit" value="ADD Note" />
             </form>
 
 
-
         </div>
     )
 }
 
-export default UpdateNote
+export default CreateNote

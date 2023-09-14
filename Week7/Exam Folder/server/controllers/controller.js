@@ -33,8 +33,7 @@ module.exports.findOneNote = (req, res) => {
 
     NotesSchema.findById(req.params.id)
         .then(oneNote => res.json(oneNote)
-        )
-        .catch(err => { res.status(400).json(err) })
+        ).catch(err => { res.status(400).json(err) })
 }
 
 // Update

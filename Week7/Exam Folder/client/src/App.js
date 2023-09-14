@@ -11,8 +11,8 @@ function App() {
     <fieldset className="App">
       <legend>Notes</legend>
       <h1>Notes</h1>
-      <Link to="/notes" class="btn btn-info">Home</Link> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-      <Link to="/notes/create" class="btn btn-danger">Create</Link>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+      <Link to="/notes">Home</Link> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+      <Link to="/notes/create">Create</Link>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
       <Routes>
         <Route path="/notes" element={<DisplayAllNotes />} />
         <Route path="/notes/create" element={<CreateNote />} />
